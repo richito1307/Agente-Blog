@@ -1,0 +1,23 @@
+# Google AI & Agentes
+google-adk
+google-genai
+langchain
+langchain-chroma
+langchain-community
+langchain-google-genai
+pydantic
+typing-extensions
+
+# Herramientas RAG
+pypdf
+chromadb
+tiktoken
+
+# Utilidades y Async/HTTP
+python-dotenv
+httpx
+requests
+
+# Autenticación (Si usas Google Cloud APIs adicionales)
+google-auth
+google-api-core
