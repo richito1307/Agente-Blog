@@ -1,15 +1,13 @@
-# agent_writer.py
-
 import json
 from typing import Optional
+
+from langchain_core.output_parsers import PydanticOutputParser
+from langchain_core.prompts import PromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain.output_parsers import PydanticOutputParser
-from langchain.prompts import PromptTemplate
-from schemas import PlanningOutput, BlogInput, BlogPost, RelevanceOutput  # Reusamos RelevanceOutput para el QA
 
-# Usamos el modelo rápido para la generación (ya tiene la estrategia definida)
+from shared.schemas import PlanningOutput, BlogInput, BlogPost, RelevanceOutput
+
 GENERATION_MODEL = 'gemini-2.5-flash'
-
 
 def run_qa_guardrail(generated_content: str) -> RelevanceOutput:
     """

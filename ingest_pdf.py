@@ -3,8 +3,8 @@ from dotenv import load_dotenv
 
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.vectorstores import Chroma
-from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 load_dotenv()
 
@@ -15,8 +15,6 @@ PERSIST_DIRECTORY = './chroma_db_copywriting'
 CHUNK_SIZE = 1000
 CHUNK_OVERLAP = 100
 
-# Inicializa el modelo de Embeddings
-# 'text-embedding-004' es el modelo recomendado por Google.
 embedding_model = GoogleGenerativeAIEmbeddings(model="text-embedding-004")
 
 

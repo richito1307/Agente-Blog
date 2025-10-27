@@ -1,22 +1,16 @@
-# agent_planner.py (CORREGIDO)
-
-import os
 from dotenv import load_dotenv
-from typing import List
+from langchain_core.output_parsers import PydanticOutputParser
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from langchain_community.vectorstores import Chroma
-from langchain.output_parsers import PydanticOutputParser
-from langchain.prompts import PromptTemplate
 import json
 
-from schemas import BlogInput, PlanningOutput
+from shared.schemas import BlogInput, PlanningOutput
 
 load_dotenv()
 
 # Rutas y Modelos
 PERSIST_DIRECTORY = './chroma_db_copywriting'
 DEFAULT_MODEL = 'gemini-2.5-pro'
-
 
 # --- Funciones de Utilidad ---
 
