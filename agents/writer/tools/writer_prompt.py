@@ -17,7 +17,6 @@ def create_writer_agent_prompt(plan: PlanningOutput, user_input: BlogInput, pars
         f"\n- METODOLOGÍA: {plan.copywriting_methodology}"
     )
 
-    # Preparar el conocimiento base
     summary_text = "\n".join([f"- {key.capitalize()}: {value}" for key, value in user_input.summary.items()])
     sources_text = "\n".join(
         [f"- Título: {s.title}, URL: {s.url}, Fiabilidad: {s.reliability_score}" for s in user_input.sources])
@@ -36,7 +35,8 @@ def create_writer_agent_prompt(plan: PlanningOutput, user_input: BlogInput, pars
         "\n2. Basa todo tu contenido en el [CONOCIMIENTO BASE]. No inventes información."
         "\n3. Sigue la METODOLOGÍA (AIDA, PAS, etc.) para estructurar la introducción, secciones y conclusión."
         "\n4. El `call_to_action` final DEBE presentar el Target Product como la SOLUCIÓN DEFINITIVA."
-        f"\n5. Tu respuesta debe ser estrictamente un JSON que se ajuste al esquema de salida. NO incluyas el campo 'sources' en el JSON que generes; será añadido después.\n{parser.get_format_instructions()}"
+        "\n5. Genera de 5 a 8 palabras clave o frases cortas (tags) altamente relevantes para SEO, basadas en el tema y el producto."
+        f"\n6. Tu respuesta debe ser estrictamente un JSON que se ajuste al esquema de salida. NO incluyas el campo 'sources' en el JSON que generes; será añadido después.\n{parser.get_format_instructions()}"
     )
 
     full_prompt = ROLE_INSTRUCTION + STRATEGY_SECTION + KNOWLEDGE_SECTION + TASK_INSTRUCTION

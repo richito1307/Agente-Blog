@@ -43,6 +43,7 @@ class BlogPost(BaseModel):
     sections: List[BlogSection] = Field(description="Una lista de secciones que desarrollan el tema.")
     call_to_action: str = Field(description="El párrafo final donde se presenta el Target Product de software y la llamada a la acción clara.")
     sources: List[Source] = Field(description="Lista de fuentes y URLs utilizadas en la investigación del blog.")
+    tags: List[str] = Field(description="Lista de 5 a 8 palabras clave o frases cortas relevantes para SEO.")
 
 class MarkdownOutput(BaseModel):
     """Define la estructura de la salida final en formato Markdown."""

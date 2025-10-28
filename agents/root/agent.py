@@ -4,7 +4,7 @@ from langchain_classic.agents import create_tool_calling_agent, AgentExecutor
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 
-from .tools.orchestrator_tools import planificar_blog, ejecutar_escritura, formatear_a_markdown
+from .tools.orchestrator_tools import planificar_blog, ejecutar_escritura, guardar_markdown_y_recursos
 from .tools.relevance_guardrail import run_relevance_guardrail
 
 load_dotenv()
@@ -27,7 +27,7 @@ def root_manager(user_input_json: str):
 
     print(f"✅ Guardrail superado. Razón: {relevance_check.reasoning}")
 
-    tools = [planificar_blog, ejecutar_escritura, formatear_a_markdown]
+    tools = [planificar_blog, ejecutar_escritura, guardar_markdown_y_recursos]
     llm = ChatGoogleGenerativeAI(model=GEMINI_MODEL, temperature=0.0)
 
     manager_prompt = ChatPromptTemplate.from_messages([
@@ -35,8 +35,8 @@ def root_manager(user_input_json: str):
          "Eres el Agente Manager Orquestador. Tu misión es guiar un input de usuario a través de un pipeline de TRES FASES: "
          "1. **Planificar**: Llama a 'planificar_blog' con el input del usuario. "
          "2. **Escribir**: Llama a 'ejecutar_escritura' con el resultado del plan y el input original. "
-         "3. **Formatear**: Llama a 'formatear_a_markdown' con la salida de la fase de escritura. "
-         "El resultado final que debes devolver al usuario es el texto en formato Markdown."),
+         "3. **Formatear y crear archivo**: Llama a 'guardar_markdown_y_recursos' con la salida de la fase de escritura. "
+         "El resultado final que debes devolver al usuario es el archivo en formato Markdown."),
         ("human", "{input}"),
         ("placeholder", "{agent_scratchpad}"),
     ])

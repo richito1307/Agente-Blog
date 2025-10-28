@@ -22,7 +22,7 @@ def run_writer_agent(plan: PlanningOutput, user_input: BlogInput) -> Optional[Bl
     parser = PydanticOutputParser(pydantic_object=BlogPost)
     llm = ChatGoogleGenerativeAI(
         model=GENERATION_MODEL,
-        temperature=0.7,
+        temperature=0.5,
     )
 
     full_prompt = create_writer_agent_prompt(plan, user_input, parser)

@@ -1,39 +1,21 @@
-# ####################
-# Archivos de Secretos y Entornos (¡MUY IMPORTANTE!)
-# ####################
-# Nunca subas tus claves de API o variables de entorno a Git.
 .env
 .env.*
 
-# Entornos virtuales de Python.
 .venv
 venv/
 env/
 ENV/
 
-# ####################
-# Archivos Generados por tu Aplicación
-# ####################
-# La base de datos vectorial se genera a partir de tus documentos, no es código fuente.
 chroma_db_copywriting/
+output_blogs/
 
-# Archivos de datos de entrada. Generalmente no se suben a Git si son grandes.
-# El README debe indicar qué archivos colocar aquí.
 data/
 
-# ####################
-# Archivos de IDE y Sistema Operativo
-# ####################
-# Configuraciones del editor PyCharm.
 .idea/
 
-# Archivos de cache y sistema operativo (macOS y Windows).
 .DS_Store
 Thumbs.db
 
-# ####################
-# Dependencias y Cache de Python (Lo esencial de tu lista)
-# ####################
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -42,3 +24,4 @@ __pycache__/
 build/
 dist/
 *.egg-info/
+project_manifest.txt
