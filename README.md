@@ -82,11 +82,6 @@ Para que el Agente Planificador funcione, necesita su base de conocimientos.
 
 ## 🚀 Uso
 
-Para ejecutar el pipeline completo, simplemente ejecuta el script del orquestador principal:
-
-```bash
-python root_manager.py
-```
 
 El script ejecutará las pruebas definidas en el bloque `if __name__ == "__main__":` y verás en la consola el progreso del agente y el `BlogPost` final en formato JSON.
 
