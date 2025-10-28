@@ -85,22 +85,3 @@ Para que el Agente Planificador funcione, necesita su base de conocimientos.
 
 El script ejecutará las pruebas definidas en el bloque `if __name__ == "__main__":` y verás en la consola el progreso del agente y el `BlogPost` final en formato JSON.
 
-## 📂 Estructura del Proyecto
-
-```
-.
-├── .venv/                     # Entorno virtual
-├── chroma_db_copywriting/     # Base de datos vectorial (ignorada por Git)
-├── data/                      # PDFs de origen (ignorada por Git)
-├── .env                       # Claves de API (ignorada por Git)
-├── .gitignore                 # Archivos a ignorar por Git
-├── agent_planner.py           # Lógica del Agente Planificador
-├── agent_writer.py            # Lógica del Agente Escritor
-├── root_manager.py            # Orquestador principal y herramientas
-├── schemas.py                 # Definiciones de Pydantic (BlogInput, BlogPost, etc.)
-└── requirements.txt           # Dependencias de Python
-```
-
-## 🔮 Próximos Pasos
-
--   [ ] Implementar un nuevo agente/herramienta para convertir la salida final JSON a formato **Markdown**.
