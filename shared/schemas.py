@@ -6,7 +6,7 @@ class Source(BaseModel):
     """Define la estructura de una fuente/URL utilizada en el blog."""
     title: str = Field(description="Título del artículo fuente")
     url: str = Field(description="URL de la fuente")
-    original_url: str = Field(description="URL original sin modificaciones")
+    resolved_url: str = Field(description="URL original sin modificaciones")
     domain: str = Field(description="Dominio de la fuente")
     reliability_score: float = Field(description="Puntuación de confiabilidad de 0.0 a 1.0")
 
