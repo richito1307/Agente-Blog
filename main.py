@@ -16,7 +16,7 @@ if __name__ == "__main__":
     sources_data = [
         Source(title="turke-watchdog-power-freeze-crypto-accounts-crackdown",
                url="https://es.cointelegraph.com/news/turke-watchdog-power-freeze-crypto-accounts-crackdown",
-               original_url="https://es.cointelegraph.com/news/turke-watchdog-power-freeze-crypto-accounts-crackdown",
+               resolved_url="https://es.cointelegraph.com/news/turke-watchdog-power-freeze-crypto-accounts-crackdown",
                domain="cointelegraph.com", reliability_score=0.9)
     ]
     safe_input = BlogInput(

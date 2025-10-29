@@ -43,7 +43,6 @@ def create_base_markdown(blog_post: BlogPost) -> str:
         markdown_parts.append("---\n")
         markdown_parts.append("### Fuentes\n")
         for source in blog_post.sources:
-            # Asegurarse de que blog_post.sources tenga los atributos title y original_url
-            markdown_parts.append(f"* [{source.title}]({source.original_url})")
+            markdown_parts.append(f"* [{source.title}]({source.resolved_url})")
 
     return "\n".join(markdown_parts)
