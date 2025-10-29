@@ -36,7 +36,7 @@ def root_manager(user_input_json: str):
          "1. **Planificar**: Llama a 'planificar_blog' con el input del usuario. "
          "2. **Escribir**: Llama a 'ejecutar_escritura' con el resultado del plan y el input original. "
          "3. **Formatear y crear archivo**: Llama a 'guardar_markdown_y_recursos' con la salida de la fase de escritura. "
-         "El resultado final que debes devolver al usuario es el archivo en formato Markdown."),
+         "El resultado final que debes devolver al usuario es el archivo en formato Markdown sin saltearse ninguna fase."),
         ("human", "{input}"),
         ("placeholder", "{agent_scratchpad}"),
     ])
