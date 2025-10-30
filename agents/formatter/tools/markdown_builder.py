@@ -30,7 +30,6 @@ def create_base_markdown(blog_post: BlogPost) -> str:
     markdown_parts.append("---\n")
     markdown_parts.append(f"![{blog_post.main_title}](./{IMAGE_FILENAME})\n")
 
-    markdown_parts.append(f"# {blog_post.main_title}\n")
     markdown_parts.append(f"{blog_post.introduction}\n")
 
     for section in blog_post.sections:

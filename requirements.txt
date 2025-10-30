@@ -21,3 +21,4 @@ requests
 # Autenticación (Si usas Google Cloud APIs adicionales)
 google-auth
 google-api-core
+beautifulsoup4
