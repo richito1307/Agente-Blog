@@ -34,8 +34,10 @@ def ejecutar_escritura(plan_output_json: str, user_input_json: str) -> str:
     Toma el PlanningOutput (el plan estratégico) y el BlogInput original para generar el BlogPost final.
     Aplica las técnicas, la estructura persuasiva y el Guardrail de QA.
     """
+    print("\n[Manager] -> Invocando Agente Escritor...")
     try:
-        plan = PlanningOutput.model_validate_json(plan_output_json)
+        cleaned_plan_json = plan_output_json.replace("\\'", "'")
+        plan = PlanningOutput.model_validate_json(cleaned_plan_json)
         user_input = BlogInput.model_validate_json(user_input_json)
     except Exception as e:
         return f"ERROR: Falló la deserialización del Plan o Input: {e}"
@@ -43,8 +45,8 @@ def ejecutar_escritura(plan_output_json: str, user_input_json: str) -> str:
     blog_post = run_writer_agent(plan, user_input)
 
     if blog_post:
-        print("✅ [Manager] -> Escritura completada con éxito.")
-        return f"SUCCESS_BLOG_POST: {blog_post.model_dump_json(indent=2)}"
+        print("✅ [Manager] -> Escritura completada con éxito. Devolviendo JSON para guardado.")
+        return blog_post.model_dump_json(indent=2)
     else:
         return "ERROR_WRITING: Falló la generación del blog o no superó el Guardrail de Calidad (QA)."
 
@@ -55,30 +57,17 @@ def guardar_markdown_y_recursos(blog_post_json: str) -> str:
     y guarda el resultado en una carpeta junto con archivos de imagen simulados.
     """
     print("\n[Manager] -> Invocando Formateador y Guardado de Recursos...")
-    blog_post = None
-
     try:
-        cleaned_json = blog_post_json
-        if cleaned_json.startswith("SUCCESS_BLOG_POST: "):
-            cleaned_json = cleaned_json.replace("SUCCESS_BLOG_POST: ", "", 1)
         decoder = json.JSONDecoder()
-        blog_dict, _ = decoder.raw_decode(cleaned_json.strip())
+        blog_dict, _ = decoder.raw_decode(blog_post_json.strip())
 
         blog_post = BlogPost.model_validate(blog_dict)
-
-    except Exception as e:
-        return f"ERROR_FINAL_SAVE: Fallo en la deserialización del JSON del blog. Detalle: {e}"
-
-    try:
         markdown_output = run_formatter_agent(blog_post)
-        output_path = save_content_and_resources(
-            blog_post.main_title,
-            markdown_output.markdown_content
-        )
+        output_path = save_content_and_resources(blog_post.main_title, markdown_output.markdown_content)
 
-        print(f"✅ [Manager] -> Contenido guardado en: {output_path}")
-        return f"SUCCESS_FINAL: El blog y sus recursos fueron guardados en la ruta: {output_path}"
+        return f"ÉXITO: El pipeline finalizó el guardado y el Markdown fue creado en la ruta: {output_path}. Ahora, por favor, comunica al usuario el resultado final y dónde se encuentra su archivo."
 
     except Exception as e:
-        print(f"Error durante el Formateo/Guardado: {e}")
-        return f"ERROR_FINAL_SAVE: Error durante el formateo o guardado. Detalle: {e}"
+        # Imprime el inicio del JSON para depurar si falla
+        print(f"Respuesta cruda que causó el error (Extracto):\n{blog_post_json[:500]}...")
+        return f"ERROR_FINAL_SAVE: No se pudo guardar el blog y sus recursos. Detalle: {e}"

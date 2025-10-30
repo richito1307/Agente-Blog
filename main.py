@@ -14,7 +14,7 @@ if __name__ == "__main__":
     print("=====================================================================")
 
     try:
-        investigation = asyncio.run(search_agent.run_task("Investiga sobre las ultimas noticias sobre regulacion de IA"))
+        investigation = asyncio.run(search_agent.run_task("Investiga sobre las ultimas noticias de AML/FT"))
         print(investigation)
         final_output = root_manager(investigation)
 
